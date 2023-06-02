@@ -274,7 +274,7 @@ int clFIni_Fun::initial_pro(Para_FL *pFlag, Para_Pro *pPPro, Para_Rain *pPRain, 
 		}
 	}
 	
-	pPPro->tt = pPPro->dt * pPPro->loop;
+	pPPro->tt = pPPro->dt * (pPPro->loop + 1);
 
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
