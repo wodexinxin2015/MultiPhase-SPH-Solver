@@ -52,10 +52,10 @@ void clAcce_Fun::artificial_stress_2d(Particle *pPar, Par_Cell *pParCell, const 
 			}
 
 			//solve the Rabi
-			if (fabs(pPar[i].sig[0] - pPar[i].sig[1]) < 1.0e-5)
+			if (fabs(pPar[i].sig[0] - pPar[i].sig[1]) < 1.0e-6)
 			{
-				if (pPar[i].sig[3] > 0.0) sita = pi * 0.78539816325;
-				else if (pPar[i].sig[3] < 0.0) sita = -pi * 0.78539816325;
+				if (pPar[i].sig[3] > 0.0) sita = -pi * 0.78539816325;
+				else if (pPar[i].sig[3] < 0.0) sita = pi * 0.78539816325;
 				else sita = 0.0;
 			}
 			else
@@ -136,7 +136,7 @@ void clAcce_Fun::artificial_stress_2d(Particle *pPar, Par_Cell *pParCell, const 
 			}
 
 			for (k = 0; k < ndim; k++)
-				pPar[i].ax[k] = pPar[i].ax[k] + tempup[k];
+				pPar[i].ax[k] = pPar[i].ax[k] - tempup[k];
 		}
 	}
 }
@@ -289,7 +289,7 @@ rxx, ryy, rzz, beta_in, beta_ints, temp)
 			}
 
 			for (k = 0; k < ndim; k++)
-				pPar[i].ax[k] = pPar[i].ax[k] + tempup[k];
+				pPar[i].ax[k] = pPar[i].ax[k] - tempup[k];
 		}
 	}
 }
