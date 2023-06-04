@@ -136,7 +136,7 @@ void clAcce_Fun::artificial_stress_2d(Particle *pPar, Par_Cell *pParCell, const 
 			}
 
 			for (k = 0; k < ndim; k++)
-				pPar[i].ax[k] = pPar[i].ax[k] - tempup[k];
+				pPar[i].ax[k] = pPar[i].ax[k] + tempup[k];
 		}
 	}
 }
