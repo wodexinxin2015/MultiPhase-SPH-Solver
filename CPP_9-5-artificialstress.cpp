@@ -289,7 +289,7 @@ rxx, ryy, rzz, beta_in, beta_ints, temp)
 			}
 
 			for (k = 0; k < ndim; k++)
-				pPar[i].ax[k] = pPar[i].ax[k] - tempup[k];
+				pPar[i].ax[k] = pPar[i].ax[k] + tempup[k];
 		}
 	}
 }
