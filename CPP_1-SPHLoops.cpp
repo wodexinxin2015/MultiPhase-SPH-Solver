@@ -39,6 +39,7 @@ void statement(FILE *flog)
 	printf("	change the module of particle_into_cell to the Binary sorting method in NNPS.\n");
 	printf("2023-06-19: V4.13.5.0\n");
 	printf("	Revise the DP model and Bui-DP model.\n");
+	printf("	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.\n");
 	printf("-------------------------------------------------------------------\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 	fprintf(flog, "	Multi-Phase and Parallelized SPH program 4.13.5.0\n");
@@ -59,8 +60,9 @@ void statement(FILE *flog)
 	fprintf(flog, "	revise the determiniation of time step increment.\n");
 	fprintf(flog, "2023-04-02: V4.13.4.0\n");
 	fprintf(flog, "	change the module of particle_into_cell to the Binary sorting method in NNPS.\n");
-		fprintf(flog, "2023-06-19: V4.13.5.0\n");
+	fprintf(flog, "2023-06-19: V4.13.5.0\n");
 	fprintf(flog, "	Revise the DP model and Bui-DP model.\n");
+	fprintf(flog, "	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 }
 

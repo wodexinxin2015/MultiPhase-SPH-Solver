@@ -27,6 +27,7 @@ revision:
 	change the module of particle_into_cell to the Binary sorting method in NNPS.
 2023-06-19: V4.13.5.0
 	Revise the DP model and Bui-DP model.
+	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.
 ************************************************************************************/
 
 #define _CRT_SECURE_NO_DEPRECATE
