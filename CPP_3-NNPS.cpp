@@ -253,8 +253,14 @@ int clNNPS_Fun::parttocell(Par_Cell *pParCell, cell_info *pCell_Info, const Cell
 #pragma omp parallel for schedule(static)
 	for (i = 0; i < ntotal; i++)
 	{
-		pParCell[i].cell_id = pParti_Cell_Sorted[i].cell_id;
+		if (pParti_Cell_Sorted[i].cell_id > 0 && pParti_Cell_Sorted[i].cell_id <= m)
+			pParCell[i].cell_id = pParti_Cell_Sorted[i].cell_id;
+		else {
+			t = 3;
+		}	
 	}
+
+	if (t > 0) return t;
 
 	//put particle id into cell information by the binary sorting method
 	Binary_Sort(pParti_Cell_Sorted, pParti_Cell_Temp, pCell_Info, ntotal, m, size_m, k);
