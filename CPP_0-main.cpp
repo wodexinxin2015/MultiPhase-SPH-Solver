@@ -25,6 +25,8 @@ revision:
 	revise the determiniation of time step increment.
 2023-04-02: V4.13.4.0
 	change the module of particle_into_cell to the Binary sorting method in NNPS.
+2023-06-19: V4.13.5.0
+	Revise the DP model and Bui-DP model.
 ************************************************************************************/
 
 #define _CRT_SECURE_NO_DEPRECATE

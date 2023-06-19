@@ -340,35 +340,33 @@ void clStraStre_Fun::dpmodel1(double (*dept)[6], const Particle &pStrePar, const
 	yalf = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	ykap = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 
-	if ((sj - 3.0 * yalf * sm - ykap) >= 0.0)
-	{
+	f11 = -yalf + dx / sj * 0.5;
+	f22 = -yalf + dy / sj * 0.5;
+	f33 = -yalf + dz / sj * 0.5;
+	f12 = dxy / sj * 0.5;
+	f23 = dyz / sj * 0.5;
+	f31 = dzx / sj * 0.5;
+	fkk = f11 + f22 + f33;
 
-		f11 = -yalf + dx / sj * 0.5;
-		f22 = -yalf + dy / sj * 0.5;
-		f33 = -yalf + dz / sj * 0.5;
-		f12 = dxy / sj * 0.5;
-		f23 = dyz / sj * 0.5;
-		f31 = dzx / sj * 0.5;
-		fkk = f11 + f22 + f33;
+	g11 = dx / sj * 0.5;
+	g22 = dy / sj * 0.5;
+	g33 = dz / sj * 0.5;
+	g12 = dxy / sj * 0.5;
+	g23 = dyz / sj * 0.5;
+	g31 = dzx / sj * 0.5;
+	hdd = g11 + g22 + g33;
 
-		g11 = dx / sj * 0.5;
-		g22 = dy / sj * 0.5;
-		g33 = dz / sj * 0.5;
-		g12 = dxy / sj * 0.5;
-		g23 = dyz / sj * 0.5;
-		g31 = dzx / sj * 0.5;
-		hdd = g11 + g22 + g33;
+	fij = 2.0 * (f11 * g11 + f22 * g22 + f33 * g33) + f12 * g12 + f23 * g23 + f31 * g31;
+	cc7 = dlam * (fkk * hdd) + dmu * fij;
+	d = 1.0 / cc7;
+	df = dlam * fkk;
+	dg = dlam * hdd;
 
-		fij = 2.0 * (f11 * g11 + f22 * g22 + f33 * g33) + f12 * g12 + f23 * g23 + f31 * g31;
-		cc7 = dlam * (fkk * hdd) + dmu * fij;
-		d = 1.0 / cc7;
-		df = dlam * fkk;
-		dg = dlam * hdd;
+	ramda = (dmu2 * f11 - 3.0 * dlam * yalf) * pStrePar.deps[0] + (dmu2 * f22 - 3.0 * dlam * yalf) * pStrePar.deps[1] + (dmu2 * f33 - 3.0 * dlam * yalf) * pStrePar.deps[2] + dmu * (f12 * pStrePar.deps[3] + f23 * pStrePar.deps[4] + f31 * pStrePar.deps[5]);
 
-		ramda = (dmu2 * f11 - 3.0 * dlam * yalf) * pStrePar.deps[0] + (dmu2 * f22 - 3.0 * dlam * yalf) * pStrePar.deps[1] + (dmu2 * f33 - 3.0 * dlam * yalf) * pStrePar.deps[2] + dmu * (f12 * pStrePar.deps[3] + f23 * pStrePar.deps[4] + f31 * pStrePar.deps[5]);
+	ttt = ramda * d;
 
-		ttt = ramda * d;
-
+	if ((sj - yalf * sm - ykap) >= 0.0){
 		if (ttt < 0.0)
 		{
 			ww0 = dg + dmu2 * g11;
@@ -496,7 +494,7 @@ void clStraStre_Fun::dpmodel_bui(double(*dept)[6], const Particle& pStrePar, con
 	yalf = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	ykap = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 
-	if ((sj - 3.0 * yalf * sm - ykap) >= 0.0)
+	if ((sj - yalf * sm - ykap) >= 0.0)
 	{
 
 		f11 = -yalf + dx / sj * 0.5;
@@ -652,7 +650,7 @@ void clStraStre_Fun::elastic_plastic(double (*dept)[6], const Particle &pStrePar
 	yalf = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	ykap = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 
-	if ((sj - 3.0 * yalf * sm - ykap) >= 0.0)
+	if ((sj - yalf * sm - ykap) >= 0.0)
 	{
 
 		f11 = -yalf + dx / sj * 0.5;

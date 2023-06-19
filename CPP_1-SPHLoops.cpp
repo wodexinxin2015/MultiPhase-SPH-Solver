@@ -19,13 +19,9 @@ void statement(FILE *flog)
 	/*program information*/
 	/*the version of program must be reflected in this function*/
 	printf("-------------------------------------------------------------------\n");
-	printf("Multi-Phase and Parallelized SPH program 4.13.4.0\n");
+	printf("Multi-Phase and Parallelized SPH program 4.13.5.0\n");
 	printf("--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	printf("-------------------------------------------------------------------\n");
-	printf("2022-05-08: V4.11.2.0\n");
-	printf("	revise a bug that divisor dst equals zero in ItBndy.free_slip_tran.\n");
-	printf("2022-05-17: V4.11.3.0\n");
-	printf("	revise the generation of random field for the lognormal distribution.\n");
 	printf("2022-06-05: V4.12.1.0\n");
 	printf("	revise the random field generation of K-L expansion.\n");
 	printf("	simplify the input parameters of random field.\n");
@@ -41,15 +37,13 @@ void statement(FILE *flog)
 	printf("	revise the determiniation of time step increment.\n");
 	printf("2023-04-02: V4.13.4.0\n");
 	printf("	change the module of particle_into_cell to the Binary sorting method in NNPS.\n");
+	printf("2023-06-19: V4.13.5.0\n");
+	printf("	Revise the DP model and Bui-DP model.\n");
 	printf("-------------------------------------------------------------------\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
-	fprintf(flog, "	Multi-Phase and Parallelized SPH program 4.13.4.0\n");
+	fprintf(flog, "	Multi-Phase and Parallelized SPH program 4.13.5.0\n");
 	fprintf(flog, "	--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
-	fprintf(flog, "2022-05-08: V4.11.2.0\n");
-	fprintf(flog, "	revise a bug that divisor dst equals zero in ItBndy.free_slip_tran.\n");
-	fprintf(flog, "2022-05-17: V4.11.3.0\n");
-	fprintf(flog, "	revise the generation of random field for the lognormal distribution.\n");
 	fprintf(flog, "2022-06-05: V4.12.1.0\n");
 	fprintf(flog, "	revise the random field generation of K-L expansion.\n");
 	fprintf(flog, "	simplify the input parameters of random field.\n");
@@ -65,6 +59,8 @@ void statement(FILE *flog)
 	fprintf(flog, "	revise the determiniation of time step increment.\n");
 	fprintf(flog, "2023-04-02: V4.13.4.0\n");
 	fprintf(flog, "	change the module of particle_into_cell to the Binary sorting method in NNPS.\n");
+		fprintf(flog, "2023-06-19: V4.13.5.0\n");
+	fprintf(flog, "	Revise the DP model and Bui-DP model.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 }
 
