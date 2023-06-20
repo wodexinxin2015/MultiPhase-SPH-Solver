@@ -295,6 +295,7 @@ void clStraStre_Fun::dpmodel1(double (*dept)[6], const Particle &pStrePar, const
 	ci = pSoil.c / pSoil.fs;
 	poi = pSoil.poi;
 	eps0 = pSoil.eps0;
+	double zkapa = pSoil.kapa;
 
 	for (ki = 0; ki < 6; ki++)
 	{
@@ -306,7 +307,13 @@ void clStraStre_Fun::dpmodel1(double (*dept)[6], const Particle &pStrePar, const
 
 	if (sm < 1.0)
 		sm = 1.0;
-	e0 = 3 * (1 - 2 * poi) * (1 + eps0) * fabs(sm) * 50.0;
+	
+	if (pSoil.e > 1.0)
+		e0 = pSoil.e;
+	else
+	{
+		e0 = 3 * (1 - 2 * poi) * (1 + eps0) * fabs(sm) / zkapa;
+	}
 
 	dlam = e0 * poi / (1.0 + poi) / (1.0 - 2.0 * poi);
 	dmu = e0 * 0.5 / (1.0 + poi);
@@ -449,6 +456,7 @@ void clStraStre_Fun::dpmodel_bui(double(*dept)[6], const Particle& pStrePar, con
 	ci = pSoil.c / pSoil.fs;
 	poi = pSoil.poi;
 	eps0 = pSoil.eps0;
+	double zkapa = pSoil.kapa;
 
 	for (ki = 0; ki < 6; ki++)
 	{
@@ -460,7 +468,13 @@ void clStraStre_Fun::dpmodel_bui(double(*dept)[6], const Particle& pStrePar, con
 
 	if (sm < 1.0)
 		sm = 1.0;
-	e0 = 3 * (1 - 2 * poi) * (1 + eps0) * fabs(sm) * 50.0;
+		
+	if (pSoil.e > 1.0)
+		e0 = pSoil.e;
+	else
+	{
+		e0 = 3 * (1 - 2 * poi) * (1 + eps0) * fabs(sm) / zkapa;
+	}
 
 	dlam = e0 * poi / (1.0 + poi) / (1.0 - 2.0 * poi);
 	dmu = e0 * 0.5 / (1.0 + poi);
@@ -605,6 +619,7 @@ void clStraStre_Fun::elastic_plastic(double (*dept)[6], const Particle &pStrePar
 	ci = pSoil.c / pSoil.fs;
 	poi = pSoil.poi;
 	eps0 = pSoil.eps0;
+	double zkapa = pSoil.kapa;
 
 	for (ki = 0; ki < 6; ki++)
 	{
@@ -616,7 +631,13 @@ void clStraStre_Fun::elastic_plastic(double (*dept)[6], const Particle &pStrePar
 
 	if (sm < 1.0)
 		sm = 1.0;
-	e0 = 3 * (1 - 2 * poi) * (1 + eps0) * fabs(sm) * 50.0;
+	
+	if (pSoil.e > 1.0)
+		e0 = pSoil.e;
+	else
+	{
+		e0 = 3 * (1 - 2 * poi) * (1 + eps0) * fabs(sm) / zkapa;
+	}
 
 	dlam = e0 * poi / (1.0 + poi) / (1.0 - 2.0 * poi);
 	dmu = e0 * 0.5 / (1.0 + poi);
