@@ -787,7 +787,7 @@ void clStraStre_Fun::DPModel_check(Particle* pStrePar, const Para_Soil& pSoil, d
 	{
 		temp_sig[ki] = pStrePar->sig[ki] + pStrePar->dsig[ki] * dt;
 	}
-	i_1 = temp_sig[0] + temp_sig[1] + temp_sig[2];
+	i_1 = (temp_sig[0] + temp_sig[1] + temp_sig[2]) / 3.0;
 
 	alpha_fai = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	k_c = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
@@ -829,7 +829,7 @@ void clStraStre_Fun::MCModel_check(Particle* pStrePar, const Para_Soil& pSoil, d
 	{
 		temp_sig[ki] = pStrePar->sig[ki] + pStrePar->dsig[ki] * dt;
 	}
-	i_1 = temp_sig[0] + temp_sig[1] + temp_sig[2];
+	i_1 = (temp_sig[0] + temp_sig[1] + temp_sig[2]) / 3.0;
 
 	alpha_fai = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	k_c = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
