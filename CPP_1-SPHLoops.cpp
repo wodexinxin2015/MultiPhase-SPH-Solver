@@ -19,7 +19,7 @@ void statement(FILE *flog)
 	/*program information*/
 	/*the version of program must be reflected in this function*/
 	printf("-------------------------------------------------------------------\n");
-	printf("Multi-Phase and Parallelized SPH program 4.13.5.0\n");
+	printf("Multi-Phase and Parallelized SPH program 4.14.1.0b\n");
 	printf("--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	printf("-------------------------------------------------------------------\n");
 	printf("2022-06-05: V4.12.1.0\n");
@@ -40,9 +40,11 @@ void statement(FILE *flog)
 	printf("2023-06-19: V4.13.5.0\n");
 	printf("	Revise the DP model and Bui-DP model.\n");
 	printf("	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.\n");
+	printf("2023-06-26: V4.14.1.0b\n");
+	printf("	in development.\n");
 	printf("-------------------------------------------------------------------\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
-	fprintf(flog, "	Multi-Phase and Parallelized SPH program 4.13.5.0\n");
+	fprintf(flog, "	Multi-Phase and Parallelized SPH program 4.14.1.0b\n");
 	fprintf(flog, "	--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 	fprintf(flog, "2022-06-05: V4.12.1.0\n");
@@ -63,6 +65,8 @@ void statement(FILE *flog)
 	fprintf(flog, "2023-06-19: V4.13.5.0\n");
 	fprintf(flog, "	Revise the DP model and Bui-DP model.\n");
 	fprintf(flog, "	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.\n");
+	fprintf(flog, "2023-06-26: V4.14.1.0b\n");
+	fprintf(flog, "	in development.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 }
 

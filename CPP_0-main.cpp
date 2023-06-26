@@ -28,6 +28,8 @@ revision:
 2023-06-19: V4.13.5.0
 	Revise the DP model and Bui-DP model.
 	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.
+2023-06-26: V4.14.1.0b
+	in development
 ************************************************************************************/
 
 #define _CRT_SECURE_NO_DEPRECATE
