@@ -289,9 +289,10 @@ void clStraStre_Fun::dpmodel1(double (*dept)[6], const Particle &pStrePar, const
 	double f11, f22, f33, f12, f23, f31, hdd, fkk, fij, cc7, d, df, dg;
 	double g11, g22, g33, g12, g23, g31;
 	double ww1, ww2, ww3, ww4, ww5, ww0, zz1, zz2, zz3, zz4, zz5, zz0;
-	double fai, ci, yalf, ykap;
+	double fai, ci, yalf, ykap, fai_dil, yalf_dil;
 
 	fai = atan(tan(pSoil.fai * 0.0174532925166667) / pSoil.fs);
+	fai_dil = atan(tan(pSoil.beta * 0.0174532925166667) / pSoil.fs);
 	ci = pSoil.c / pSoil.fs;
 	poi = pSoil.poi;
 	eps0 = pSoil.eps0;
@@ -307,7 +308,7 @@ void clStraStre_Fun::dpmodel1(double (*dept)[6], const Particle &pStrePar, const
 
 	if (sm < 1.0)
 		sm = 1.0;
-	
+		
 	if (pSoil.e > 1.0)
 		e0 = pSoil.e;
 	else
@@ -347,33 +348,39 @@ void clStraStre_Fun::dpmodel1(double (*dept)[6], const Particle &pStrePar, const
 	yalf = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	ykap = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 
-	f11 = -yalf + dx / sj * 0.5;
-	f22 = -yalf + dy / sj * 0.5;
-	f33 = -yalf + dz / sj * 0.5;
-	f12 = dxy / sj * 0.5;
-	f23 = dyz / sj * 0.5;
-	f31 = dzx / sj * 0.5;
-	fkk = f11 + f22 + f33;
+	if ((sj - yalf * sm * 3.0 - ykap) >= 0.0)
+	{
 
-	g11 = dx / sj * 0.5;
-	g22 = dy / sj * 0.5;
-	g33 = dz / sj * 0.5;
-	g12 = dxy / sj * 0.5;
-	g23 = dyz / sj * 0.5;
-	g31 = dzx / sj * 0.5;
-	hdd = g11 + g22 + g33;
+		f11 = -yalf + dx / sj * 0.5;
+		f22 = -yalf + dy / sj * 0.5;
+		f33 = -yalf + dz / sj * 0.5;
+		f12 = dxy / sj * 0.5;
+		f23 = dyz / sj * 0.5;
+		f31 = dzx / sj * 0.5;
+		fkk = f11 + f22 + f33;
 
-	fij = 2.0 * (f11 * g11 + f22 * g22 + f33 * g33) + f12 * g12 + f23 * g23 + f31 * g31;
-	cc7 = dlam * (fkk * hdd) + dmu * fij;
-	d = 1.0 / cc7;
-	df = dlam * fkk;
-	dg = dlam * hdd;
+		yalf_dil = 0.0;
+		g11 = -yalf_dil + dx / sj * 0.5;
+		g22 = -yalf_dil + dy / sj * 0.5;
+		g33 = -yalf_dil + dz / sj * 0.5;
+		g12 = dxy / sj * 0.5;
+		g23 = dyz / sj * 0.5;
+		g31 = dzx / sj * 0.5;
+		hdd = g11 + g22 + g33;
 
-	ramda = (dmu2 * f11 - 3.0 * dlam * yalf) * pStrePar.deps[0] + (dmu2 * f22 - 3.0 * dlam * yalf) * pStrePar.deps[1] + (dmu2 * f33 - 3.0 * dlam * yalf) * pStrePar.deps[2] + dmu * (f12 * pStrePar.deps[3] + f23 * pStrePar.deps[4] + f31 * pStrePar.deps[5]);
+		fij = 2.0 * (f11 * g11 + f22 * g22 + f33 * g33) + f12 * g12 + f23 * g23 + f31 * g31;
+		cc7 = dlam * (fkk * hdd) + dmu * fij + hdd;
+		d = 1.0 / cc7;
+		df = dlam * fkk;
+		dg = dlam * hdd;
 
-	ttt = ramda * d;
+		ramda = (dmu2 * f11 - 3.0 * dlam * yalf) * pStrePar.deps[0] 
+		+ (dmu2 * f22 - 3.0 * dlam * yalf) * pStrePar.deps[1] 
+		+ (dmu2 * f33 - 3.0 * dlam * yalf) * pStrePar.deps[2] 
+		+ dmu * (f12 * pStrePar.deps[3] + f23 * pStrePar.deps[4] + f31 * pStrePar.deps[5]);
 
-	if ((sj - yalf * sm - ykap) >= 0.0){
+		ttt = ramda * d;
+
 		if (ttt < 0.0)
 		{
 			ww0 = dg + dmu2 * g11;
@@ -508,7 +515,7 @@ void clStraStre_Fun::dpmodel_bui(double(*dept)[6], const Particle& pStrePar, con
 	yalf = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	ykap = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 
-	if ((sj - yalf * sm - ykap) >= 0.0)
+	if ((sj - yalf * sm * 3.0 - ykap) >= 0.0)
 	{
 
 		f11 = -yalf + dx / sj * 0.5;
@@ -534,7 +541,10 @@ void clStraStre_Fun::dpmodel_bui(double(*dept)[6], const Particle& pStrePar, con
 		df = dlam * fkk;
 		dg = dlam * hdd;
 
-		ramda = (dmu2 * f11 - 3.0 * dlam * yalf) * pStrePar.deps[0] + (dmu2 * f22 - 3.0 * dlam * yalf) * pStrePar.deps[1] + (dmu2 * f33 - 3.0 * dlam * yalf) * pStrePar.deps[2] + dmu * (f12 * pStrePar.deps[3] + f23 * pStrePar.deps[4] + f31 * pStrePar.deps[5]);
+		ramda = (dmu2 * f11 - 3.0 * dlam * yalf) * pStrePar.deps[0] 
+		+ (dmu2 * f22 - 3.0 * dlam * yalf) * pStrePar.deps[1] 
+		+ (dmu2 * f33 - 3.0 * dlam * yalf) * pStrePar.deps[2] 
+		+ dmu * (f12 * pStrePar.deps[3] + f23 * pStrePar.deps[4] + f31 * pStrePar.deps[5]);
 
 		ttt = ramda * d;
 
@@ -671,7 +681,7 @@ void clStraStre_Fun::elastic_plastic(double (*dept)[6], const Particle &pStrePar
 	yalf = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	ykap = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 
-	if ((sj - yalf * sm - ykap) >= 0.0)
+	if ((sj - yalf * sm * 3.0 - ykap) >= 0.0)
 	{
 
 		f11 = -yalf + dx / sj * 0.5;
@@ -787,16 +797,16 @@ void clStraStre_Fun::DPModel_check(Particle* pStrePar, const Para_Soil& pSoil, d
 	{
 		temp_sig[ki] = pStrePar->sig[ki] + pStrePar->dsig[ki] * dt;
 	}
-	i_1 = (temp_sig[0] + temp_sig[1] + temp_sig[2]) / 3.0;
+	i_1 = temp_sig[0] + temp_sig[1] + temp_sig[2];
 
 	alpha_fai = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	k_c = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	rn = (-alpha_fai * i_1 + k_c) / sj;
 
 	if (rn < 1.0) { //Stress-scaling back procedure
-		temp_sig[0] = rn * (temp_sig[0] - i_1 * 0.3333333) + i_1 * 0.3333333;
-		temp_sig[1] = rn * (temp_sig[1] - i_1 * 0.3333333) + i_1 * 0.3333333;
-		temp_sig[2] = rn * (temp_sig[2] - i_1 * 0.3333333) + i_1 * 0.3333333;
+		temp_sig[0] = rn * (temp_sig[0] - i_1 / 3.0) + i_1 / 3.0;
+		temp_sig[1] = rn * (temp_sig[1] - i_1 / 3.0) + i_1 / 3.0;
+		temp_sig[2] = rn * (temp_sig[2] - i_1 / 3.0) + i_1 / 3.0;
 		temp_sig[3] = rn * temp_sig[3];
 		temp_sig[4] = rn * temp_sig[4];
 		temp_sig[5] = rn * temp_sig[5];
@@ -829,16 +839,16 @@ void clStraStre_Fun::MCModel_check(Particle* pStrePar, const Para_Soil& pSoil, d
 	{
 		temp_sig[ki] = pStrePar->sig[ki] + pStrePar->dsig[ki] * dt;
 	}
-	i_1 = (temp_sig[0] + temp_sig[1] + temp_sig[2]) / 3.0;
+	i_1 = temp_sig[0] + temp_sig[1] + temp_sig[2];
 
 	alpha_fai = sin(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	k_c = 3.0 * ci * cos(fai) / sqrt(9.0 + 3.0 * sin(fai) * sin(fai));
 	rn = (-alpha_fai * i_1 + k_c) / sj;
 
 	if (rn < 1.0) { //Stress-scaling back procedure
-		temp_sig[0] = rn * (temp_sig[0] - i_1 * 0.3333333) + i_1 * 0.3333333;
-		temp_sig[1] = rn * (temp_sig[1] - i_1 * 0.3333333) + i_1 * 0.3333333;
-		temp_sig[2] = rn * (temp_sig[2] - i_1 * 0.3333333) + i_1 * 0.3333333;
+		temp_sig[0] = rn * (temp_sig[0] - i_1 / 3.0) + i_1 / 3.0;
+		temp_sig[1] = rn * (temp_sig[1] - i_1 / 3.0) + i_1 / 3.0;
+		temp_sig[2] = rn * (temp_sig[2] - i_1 / 3.0) + i_1 / 3.0;
 		temp_sig[3] = rn * temp_sig[3];
 		temp_sig[4] = rn * temp_sig[4];
 		temp_sig[5] = rn * temp_sig[5];
