@@ -6,16 +6,6 @@ Multi-Phase and Parallelized SPH program
 ************************************************************************************/
 /************************************************************************************
 revision:
-2022-05-08: V4.11.2.0
-	revise a bug that divisor dst equals zero in ItBndy.free_slip_tran.
-2022-05-17: V4.11.3.0
-	revise the generation of random field for the lognormal distribution.
-2022-06-05: V4.12.1.0
-	revise the random field generation of K-L expansion.
-	simplify the input parameters of random field.
-	add the homogeneous random field for the correlated c and fai.
-2022-06-14: V4.12.2.0
-	add the rotational anisotropic random field with parameter beta.
 2023-03-20: V4.13.1.0
 	reduce the memory consumption of NNPS variables.
 2023-03-24: V4.13.2.0
@@ -30,6 +20,8 @@ revision:
 	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.
 2023-06-26: V4.14.1.0b
 	in development
+2023-08-18£ºV5.1.1
+    start a new version number.
 ************************************************************************************/
 
 #define _CRT_SECURE_NO_DEPRECATE

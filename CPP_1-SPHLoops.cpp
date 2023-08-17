@@ -19,15 +19,9 @@ void statement(FILE *flog)
 	/*program information*/
 	/*the version of program must be reflected in this function*/
 	printf("-------------------------------------------------------------------\n");
-	printf("Multi-Phase and Parallelized SPH program 4.14.1.0b\n");
+	printf("Multi-Phase and Parallelized SPH program 5.1.1\n");
 	printf("--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	printf("-------------------------------------------------------------------\n");
-	printf("2022-06-05: V4.12.1.0\n");
-	printf("	revise the random field generation of K-L expansion.\n");
-	printf("	simplify the input parameters of random field.\n");
-	printf("	add the homogeneous random field for the correlated c and fai.\n");
-	printf("2022-06-14: V4.12.2.0\n");
-	printf("	add the rotational anisotropic random field with parameter beta.\n");
 	printf("2023-03-20: V4.13.1.0\n");
 	printf("	reduce the memory consumption of NNPS variables.\n");
 	printf("2023-03-24: V4.13.2.0\n");
@@ -42,17 +36,13 @@ void statement(FILE *flog)
 	printf("	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.\n");
 	printf("2023-06-26: V4.14.1.0b\n");
 	printf("	in development.\n");
+	printf("2023-08-18£ºV5.1.1\n");
+	printf("	start a new version number.\n");
 	printf("-------------------------------------------------------------------\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
-	fprintf(flog, "	Multi-Phase and Parallelized SPH program 4.14.1.0b\n");
+	fprintf(flog, "	Multi-Phase and Parallelized SPH program 5.1.1\n");
 	fprintf(flog, "	--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
-	fprintf(flog, "2022-06-05: V4.12.1.0\n");
-	fprintf(flog, "	revise the random field generation of K-L expansion.\n");
-	fprintf(flog, "	simplify the input parameters of random field.\n");
-	fprintf(flog, "	add the homogeneous random field for the correlated c and fai.\n");
-	fprintf(flog, "2022-06-14: V4.12.2.0\n");
-	fprintf(flog, "	add the rotational anisotropic random field with parameter beta.\n");
 	fprintf(flog, "2023-03-20: V4.13.1.0\n");
 	fprintf(flog, "	reduce the memory consumption of NNPS variables.\n");
 	fprintf(flog, "2023-03-24: V4.13.2.0\n");
@@ -67,6 +57,8 @@ void statement(FILE *flog)
 	fprintf(flog, "	Revise the segmentation fault bug in the CPP_3-NNPS.cpp.\n");
 	fprintf(flog, "2023-06-26: V4.14.1.0b\n");
 	fprintf(flog, "	in development.\n");
+	fprintf(flog, "2023-08-18£ºV5.1.1\n");
+	fprintf(flog, "	start a new version number.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 }
 
