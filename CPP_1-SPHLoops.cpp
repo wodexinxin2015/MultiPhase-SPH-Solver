@@ -38,6 +38,9 @@ void statement(FILE *flog)
 	printf("	in development.\n");
 	printf("2023-08-18£ºV5.1.1\n");
 	printf("	start a new version number.\n");
+	printf("2023-08-20£ºV5.1.2b\n");
+	printf("	revise a bug in the CPP_3-NNPS.cpp: cellid for the rainfall particle is not calculated,\n");
+	printf("	but checked in the following code, thus it will throw an exception.\n");
 	printf("-------------------------------------------------------------------\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 	fprintf(flog, "	Multi-Phase and Parallelized SPH program 5.1.1\n");
@@ -59,6 +62,9 @@ void statement(FILE *flog)
 	fprintf(flog, "	in development.\n");
 	fprintf(flog, "2023-08-18£ºV5.1.1\n");
 	fprintf(flog, "	start a new version number.\n");
+	fprintf(flog, "2023-08-20£ºV5.1.2b\n");
+	fprintf(flog, "	revise a bug in the CPP_3-NNPS.cpp: cellid for the rainfall particle is not calculated,\n");
+	fprintf(flog, "	but checked in the following code, thus it will throw an exception.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 }
 

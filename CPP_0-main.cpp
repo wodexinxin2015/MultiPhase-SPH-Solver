@@ -22,6 +22,9 @@ revision:
 	in development
 2023-08-18£ºV5.1.1
     start a new version number.
+2023-08-20£ºV5.1.2b
+	revise a bug in the CPP_3-NNPS.cpp: cellid for the rainfall particle is not calculated,
+	but checked in the following code, thus it will throw an exception.
 ************************************************************************************/
 
 #define _CRT_SECURE_NO_DEPRECATE

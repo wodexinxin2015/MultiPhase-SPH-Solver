@@ -209,18 +209,15 @@ int clNNPS_Fun::parttocell(Par_Cell *pParCell, cell_info *pCell_Info, const Cell
 			id = ntd;
 			for (i = id; i < ntotal; i += cn)
 			{
-				if (pPar[i].type != 7)
+				for (j = 0; j < 2; j++)
 				{
-					for (j = 0; j < 2; j++)
-					{
-						nx[j] = fabs(pPar[i].xp[j] - xmin[j]) / dr + 2.0;
-						nx_t[j] = (int)(nx[j]);
-						if (nx_t[j] < 2)
-							nx_t[j] = 2;
-					}
-					pParti_Cell_Sorted[i].cell_id = nYm * (nx_t[0] - 1) + nx_t[1];
-					pParti_Cell_Sorted[i].parti_id = i;
+					nx[j] = fabs(pPar[i].xp[j] - xmin[j]) / dr + 2.0;
+					nx_t[j] = (int)(nx[j]);
+					if (nx_t[j] < 2)
+						nx_t[j] = 2;
 				}
+				pParti_Cell_Sorted[i].cell_id = nYm * (nx_t[0] - 1) + nx_t[1];
+				pParti_Cell_Sorted[i].parti_id = i;
 			}
 		}
 	}
@@ -233,18 +230,15 @@ int clNNPS_Fun::parttocell(Par_Cell *pParCell, cell_info *pCell_Info, const Cell
 			id = ntd;
 			for (i = id; i < ntotal; i += cn)
 			{
-				if (pPar[i].type != 7)
+				for (j = 0; j < 3; j++)
 				{
-					for (j = 0; j < 3; j++)
-					{
-						nx[j] = fabs(pPar[i].xp[j] - xmin[j]) / dr + 2.0;
-						nx_t[j] = (int)(nx[j]);
-						if (nx_t[j] < 2)
-							nx_t[j] = 2;
-					}
-					pParti_Cell_Sorted[i].cell_id = nXm * nZm * (nx_t[1] - 1) + nZm * (nx_t[0] - 1) + nx_t[2];
-					pParti_Cell_Sorted[i].parti_id = i;
+					nx[j] = fabs(pPar[i].xp[j] - xmin[j]) / dr + 2.0;
+					nx_t[j] = (int)(nx[j]);
+					if (nx_t[j] < 2)
+						nx_t[j] = 2;
 				}
+				pParti_Cell_Sorted[i].cell_id = nXm * nZm * (nx_t[1] - 1) + nZm * (nx_t[0] - 1) + nx_t[2];
+				pParti_Cell_Sorted[i].parti_id = i;
 			}
 		}
 	}
