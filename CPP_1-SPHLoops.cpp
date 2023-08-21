@@ -19,7 +19,7 @@ void statement(FILE *flog)
 	/*program information*/
 	/*the version of program must be reflected in this function*/
 	printf("-------------------------------------------------------------------\n");
-	printf("Multi-Phase and Parallelized SPH program 5.1.1\n");
+	printf("Multi-Phase and Parallelized SPH program 5.1.2c\n");
 	printf("--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	printf("-------------------------------------------------------------------\n");
 	printf("2023-03-20: V4.13.1.0\n");
@@ -41,9 +41,12 @@ void statement(FILE *flog)
 	printf("2023-08-20£ºV5.1.2b\n");
 	printf("	revise a bug in the CPP_3-NNPS.cpp: cellid for the rainfall particle is not calculated,\n");
 	printf("	but checked in the following code, thus it will throw an exception.\n");
+	printf("2023-08-21£ºV5.1.2c\n");
+	printf("	revise a bug in the CPP_1-SPHLoops.cpp: mod(pPPro->l - pPPro->inip, lp) == 0\n");
+	printf("	------->(pPPro->l - pPPro->inip) %% lp == 0.\n");
 	printf("-------------------------------------------------------------------\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
-	fprintf(flog, "	Multi-Phase and Parallelized SPH program 5.1.1\n");
+	fprintf(flog, "	Multi-Phase and Parallelized SPH program 5.1.2c\n");
 	fprintf(flog, "	--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 	fprintf(flog, "2023-03-20: V4.13.1.0\n");
@@ -65,6 +68,9 @@ void statement(FILE *flog)
 	fprintf(flog, "2023-08-20£ºV5.1.2b\n");
 	fprintf(flog, "	revise a bug in the CPP_3-NNPS.cpp: cellid for the rainfall particle is not calculated,\n");
 	fprintf(flog, "	but checked in the following code, thus it will throw an exception.\n");
+	fprintf(flog, "2023-08-21£ºV5.1.2c\n");
+	fprintf(flog, "	revise a bug in the CPP_1-SPHLoops.cpp: mod(pPPro->l - pPPro->inip, lp) == 0\n");
+	fprintf(flog, "	------->(pPPro->l - pPPro->inip) %% lp == 0.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 }
 
@@ -485,7 +491,7 @@ int SPH_Calculation(int argc, char *argv)
 		if (pPPro->t < pPPro->tt)
 		{
 			pPPro->t = pPPro->t + pPPro->dt;
-			if (mod(pPPro->l, pPPro->fop) == 0)
+			if (pPPro->l % pPPro->fop == 0)
 			{
 				st_count += 1;
 				printf("It is %8d step of total %8d steps, %6.3e s for output.  \n", pPPro->l, pPPro->loop, pPPro->t);
@@ -497,8 +503,8 @@ int SPH_Calculation(int argc, char *argv)
 				ItOutput.output_status(pPPro->l, (st_count - 1) * pPPro->fop, st_count * pPPro->fop);
 			}
 
-			// produce rainfall
-			if (pFlag->flr == 1 && (pPPro->l - pPPro->inip) > 0 && mod(pPPro->l - pPPro->inip, lp) == 0)
+			// produce rainfallbp
+			if (pFlag->flr == 1 && (pPPro->l - pPPro->inip) > 0 && (pPPro->l - pPPro->inip) % lp == 0)
 			{
 				// rainfall producing
 				if (pPRain->rtype == 1)
@@ -556,7 +562,7 @@ int SPH_Calculation(int argc, char *argv)
 			ItStaSts.strain_noreg(pPar, pParCell, pBndy_pair, pParti_VariBndy, *pPPro, pFlag->flbndy);
 
 			// strain regularization
-			if (mod(pPPro->l, pPPro->step_regu) == 0)
+			if (pPPro->l % pPPro->step_regu == 0)
 			{
 				ItStaSts.strain_regu(pPar, pParCell, *pPPro);
 			}
@@ -576,7 +582,7 @@ int SPH_Calculation(int argc, char *argv)
 			ItStaSts.strain_to_stress(pPar, pParti_ConsPara, pParStiff, pVFluid, *pStruct, *pPPro, pFlag->ntd, pFlag->flts, pMatter->alphats);
 
 			// stress regularization
-			if (mod(pPPro->l, pPPro->step_regu) == 0)
+			if (pPPro->l % pPPro->step_regu == 0)
 			{
 				ItStaSts.stress_regu(pPar, pParCell, *pPPro);
 			}
@@ -763,7 +769,7 @@ int SPH_Calculation(int argc, char *argv)
 			}
 
 			// output to file
-			if (mod(pPPro->l, pPPro->fop) == 0 || pPPro->l == 1)
+			if (pPPro->l % pPPro->fop == 0 || pPPro->l == 1)
 			{
 				// output to the inp file
 				ItOutput.output_total(pPar, *pPPro, argv);

@@ -25,6 +25,9 @@ revision:
 2023-08-20£ºV5.1.2b
 	revise a bug in the CPP_3-NNPS.cpp: cellid for the rainfall particle is not calculated,
 	but checked in the following code, thus it will throw an exception.
+2023-08-21£ºV5.1.2c
+	revise a bug in the CPP_1-SPHLoops.cpp: mod(pPPro->l - pPPro->inip, lp) == 0
+	------->(pPPro->l - pPPro->inip) % lp == 0
 ************************************************************************************/
 
 #define _CRT_SECURE_NO_DEPRECATE

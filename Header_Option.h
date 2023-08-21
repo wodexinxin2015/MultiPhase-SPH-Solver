@@ -16,6 +16,5 @@ Multi-Phase and Parallelized SPH program
 #endif
 
 #define ep_err 1.0e-3
-#define mod(x,y) (x - y * (x / y))
 
 #endif // HEADER_OPTION_H_INCLUDED
