@@ -19,16 +19,9 @@ void statement(FILE *flog)
 	/*program information*/
 	/*the version of program must be reflected in this function*/
 	printf("-------------------------------------------------------------------\n");
-	printf("Multi-Phase and Parallelized SPH program 5.1.2c\n");
+	printf("Multi-Phase and Parallelized SPH program 5.1.2\n");
 	printf("--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	printf("-------------------------------------------------------------------\n");
-	printf("2023-03-20: V4.13.1.0\n");
-	printf("	reduce the memory consumption of NNPS variables.\n");
-	printf("2023-03-24: V4.13.2.0\n");
-	printf("	add the correction algorithm of CSPM into the density, strain and XSPH calculation.\n");
-	printf("2023-03-28: V4.13.3.0\n");
-	printf("	revise the constitutive model of DP from DBLeaves, DP of Bui and Elastic-Plastic of MC;\n");
-	printf("	revise the determiniation of time step increment.\n");
 	printf("2023-04-02: V4.13.4.0\n");
 	printf("	change the module of particle_into_cell to the Binary sorting method in NNPS.\n");
 	printf("2023-06-19: V4.13.5.0\n");
@@ -44,18 +37,13 @@ void statement(FILE *flog)
 	printf("2023-08-21£ºV5.1.2c\n");
 	printf("	revise a bug in the CPP_1-SPHLoops.cpp: mod(pPPro->l - pPPro->inip, lp) == 0\n");
 	printf("	------->(pPPro->l - pPPro->inip) %% lp == 0.\n");
+	printf("2024-06-25£ºV5.1.2\n");
+	printf("	change the effect treatment of porosity change on the density in CPP_6-density.cpp\n");
 	printf("-------------------------------------------------------------------\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 	fprintf(flog, "	Multi-Phase and Parallelized SPH program 5.1.2c\n");
 	fprintf(flog, "	--Copyright (c) 2018-2023 Weijie ZHANG, GeoHohai, Hohai University.\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
-	fprintf(flog, "2023-03-20: V4.13.1.0\n");
-	fprintf(flog, "	reduce the memory consumption of NNPS variables.\n");
-	fprintf(flog, "2023-03-24: V4.13.2.0\n");
-	fprintf(flog, "	add the correction algorithm of CSPM into the density, strain and XSPH calculation.\n");
-	fprintf(flog, "2023-03-24: V4.13.3.0\n");
-	fprintf(flog, "	revise the constitutive model of DP from DBLeaves, DP of Bui and Elastic-Plastic of MC;\n");
-	fprintf(flog, "	revise the determiniation of time step increment.\n");
 	fprintf(flog, "2023-04-02: V4.13.4.0\n");
 	fprintf(flog, "	change the module of particle_into_cell to the Binary sorting method in NNPS.\n");
 	fprintf(flog, "2023-06-19: V4.13.5.0\n");
@@ -71,6 +59,8 @@ void statement(FILE *flog)
 	fprintf(flog, "2023-08-21£ºV5.1.2c\n");
 	fprintf(flog, "	revise a bug in the CPP_1-SPHLoops.cpp: mod(pPPro->l - pPPro->inip, lp) == 0\n");
 	fprintf(flog, "	------->(pPPro->l - pPPro->inip) %% lp == 0.\n");
+	fprintf(flog, "2024-06-25£ºV5.1.2\n");
+	fprintf(flog, "	change the effect treatment of porosity change on the density in CPP_6-density.cpp\n");
 	fprintf(flog, "-------------------------------------------------------------------\n");
 }
 

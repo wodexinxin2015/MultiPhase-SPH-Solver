@@ -152,7 +152,7 @@ void clDensity_Fun::density(Particle* pPar, Par_Cell* pParCell, Para_Fluid* pVFl
 
 			if (pPar[i].type == 1) {
 				if (fabs(pPar[i].porosity) > 0.0001) {
-					pPar[i].rho = pPar[i].rhop + drhot * dt + pPar[j].rho * (pPar[i].porosity - pPar[i].poro_cop) / (1.0 - pPar[i].poro_cop);    //considering the porosity effect
+					pPar[i].rho = pPar[i].rhop + drhot * dt + pPar[i].rhop * (pPar[i].porosity - pPar[i].poro_cop) / (1.0 - pPar[i].poro_cop);    //considering the porosity effect
 				}
 				else {
 					pPar[i].rho = pPar[i].rhop + drhot * dt;

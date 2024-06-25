@@ -28,6 +28,8 @@ revision:
 2023-08-21£ºV5.1.2c
 	revise a bug in the CPP_1-SPHLoops.cpp: mod(pPPro->l - pPPro->inip, lp) == 0
 	------->(pPPro->l - pPPro->inip) % lp == 0
+2024-06-25£ºV5.1.2
+	change the effect treatment of porosity change on the density in CPP_6-density.cpp
 ************************************************************************************/
 
 #define _CRT_SECURE_NO_DEPRECATE
