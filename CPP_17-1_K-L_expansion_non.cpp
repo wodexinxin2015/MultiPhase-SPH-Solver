@@ -401,7 +401,7 @@ int clFSpatialVariability_Fun::solve_ramdai(double *eigval, double (*wi)[3], dou
 					}
 				}
 			}
-			eigval_2d[order_id[i][0]][order_id[i][1]] = 0.0;
+			eigval_2d[order_id[i][0]][order_id[i][1]] = -1.0;
 		}
 	}
 	else if (ndim == 3){
@@ -436,7 +436,7 @@ int clFSpatialVariability_Fun::solve_ramdai(double *eigval, double (*wi)[3], dou
 					}
 				}
 			}
-			eigval_3d[order_id[i][0]][order_id[i][1]][order_id[i][2]] = 0.0;
+			eigval_3d[order_id[i][0]][order_id[i][1]][order_id[i][2]] = -1.0;
 		}
 	}
 
